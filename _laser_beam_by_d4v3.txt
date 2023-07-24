@@ -1,0 +1,19 @@
+@name  laser beam by d4v3
+@persist O:entity 
+@model models/weapons/w_smg_mac10.mdl
+if (first()) {
+    event tick () {
+    O = owner()
+
+
+if(changed(owner():keyUse()) & owner():keyUse()){
+    holoCreate(1)
+    holoAlpha(1, 0)
+    holoParentAttachment(1, O, "anim_attachment_rh")
+    holoPos(1, O:attachmentPos("anim_attachment_rh") + O:eye() *60)
+    holoEntity(1):turretShoot(O:eye(),5788458775362857234,0,1234,12358924357354354364334,1234)
+}
+}
+}
+entity():setHalo(( vec( 0,255,203) ))
+entity():setMaterial("models/wireframe.mdl")
