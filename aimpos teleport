@@ -1,0 +1,15 @@
+@name aimpos teleport d4
+@inputs 
+@outputs 
+@persist 
+@trigger 
+@strict
+event tick(){
+O=owner()
+#O:plyAlpha(255)
+#O:setHalo(vec(0,25,255))
+if(O:keyUse()){
+    O:teleport(O:aimPos())
+}
+}
+#requires dathus core
