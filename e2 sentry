@@ -1,0 +1,76 @@
+@name Aim D4-8600 SentryBot
+@persist  
+@persist  
+if(first()){
+event tick(){
+    holoCreate(1)
+    PosE2=entity():pos()
+    Radius=424
+
+    holoCreate(0)
+    holoModel(0,"models/hunter/tubes/circle4x4c.mdl")
+    holoMaterial(0,"models/weapons/v_slam/new light1")
+    holoColor(0,vec(255,0,0))
+    holoScale(0,vec(5,5,5))
+    holoAlpha(0,5)
+    holoAng(0, entity():toWorld(ang(0, curtime()*300, 0)))
+    #
+    holoModel(1, "models/props_c17/fountain_01.mdl")
+    holoScale(1, vec(0.25))
+    holoMaterial(1,"models/debug/debugwhite")
+    holoAng(1, entity():toWorld(ang(0, curtime()*450, 0)))
+    holoColor(1,vec(0,0,0))
+    #
+    holoCreate(2)
+    holoModel(2, "models/props_c17/fountain_01.mdl")
+    holoScale(2, vec(0.2))
+    holoMaterial(2,"models/debug/debugwhite")
+    holoColor(2,vec(255,0,0))
+
+    #
+    holoCreate(3)
+    holoModel(3, "models/Gibs/HGIBS.mdl")
+    holoScale(3, vec(2))
+    holoColor(3,vec(255,0,0))
+    #
+    holoCreate(4)
+    holoModel(4,"models/hunter/plates/plate8.mdl")
+    holoAng(4, entity():toWorld(ang(0, curtime()*100, 0)))
+    holoMaterial(4,"models/weapons/v_slam/new light1")
+    holoAlpha(4,10)
+    holoColor(4,vec(255,0,0))
+    holoScale(4,vec(2,2,2))
+    #
+    holoCreate(5)
+    holoModel(5,"models/weapons/w_snip_g3sg1.mdl")
+    holoAng(5, entity():toWorld(ang(0, curtime()*100, 0)))
+    holoPos(5,holoEntity(1):pos() + holoEntity(1):up()*50)
+    holoMaterial(5,"models/debug/debugwhite")
+    holoColor(5,vec(0,0,0))
+    #
+    holoEntity(1):parentTo(entity())
+        holoEntity(2):parentTo(entity())
+            holoEntity(3):parentTo(entity())
+                holoEntity(4):parentTo(entity())
+                    holoEntity(5):parentTo(entity())
+    #
+    findInSphere(PosE2, Radius)
+    findExcludeEntity(owner())
+    
+    findByClass("player")
+                foreach(_,Ent:entity = findToArray()){
+                 if(Ent:isAlive()){
+                    Prop = propSpawn("models/props_phx/ww2bomb.mdl",Ent:pos(),1)
+                    Prop:propBreak()
+                    #Ent:dmgApplyDamage(inf())
+                    #holoEntity(1):turretShoot(Ent:pos(), inf(),0.1, inf(),inf(), inf())
+                    #holoEntity(2):turretShoot(Ent:boxCenterW(), inf(),0.1, inf(),inf(), inf())
+                    #holoEntity(3):turretShoot(Ent:boxCenterW(), inf(),0.1, inf(),inf(), inf()) 
+                    entity():soundPlay(10,10,"NPC_FloorTurret.ShotSounds")  
+                    holoPos(3,Ent:shootPos())
+                    #Ent:printPlayer("Sentry Radar has detected you, please avoid this area.")
+                }
+               }
+               }
+    }
+
