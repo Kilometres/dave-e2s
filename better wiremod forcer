@@ -1,0 +1,13 @@
+@name better forcer d4
+@inputs 
+@outputs Force OffsetForce Velocity Length
+@persist 
+@trigger 
+@strict
+interval(200)
+findByClass("gmod_wire_forcer")
+Force=inf()
+OffsetForce=inf()
+Velocity=inf()
+Length=inf()
+
