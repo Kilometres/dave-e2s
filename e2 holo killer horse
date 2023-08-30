@@ -14,3 +14,5 @@ event tick(){
     HoloHALO:setHalo(vec(random(255),random(255),random(255)))
 }
 #requires enextra core
+
+#note : this got me banned on few servers xd
