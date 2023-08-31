@@ -17,3 +17,5 @@ if(changed(owner():keyUse()) & owner():keyUse()){
 }
 entity():setHalo(( vec( 0,255,203) ))
 entity():setMaterial("models/wireframe.mdl")
+
+#requires AntCore
