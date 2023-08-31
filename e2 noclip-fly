@@ -13,9 +13,5 @@ if(NoClip == 1){
     owner():applyPlayerForce(owner():vel()*-1+vec(0,0,gravity()*tickInterval()))
     owner():teleport(owner():pos()+vec(owner():keyForward()-owner():keyBack(),owner():keyLeft()-owner():keyRight(),owner():keyJump()):rotate(owner():eyeAngles())*(40+40*owner():keySprint()-25*owner():keyDuck()))
 }
-runOnDeath(1)
-if(deathClk()){
-    hint("ur so bad even with my noclip, how the hell did you manage to die",7)
-}
 
 #requires dathus core
