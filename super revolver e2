@@ -1,0 +1,46 @@
+@name SUPER REVOLVER by d4v3
+@inputs 
+@outputs 
+@persist 
+@trigger 
+@strict
+@model models/weapons/w_357.mdl
+event tick(){
+O = owner()
+if(owner():keyAttack1()){
+if(owner():weapon():type() == "weapon_357"){
+    Revolver=owner():weapon():type() == ("weapon_357")
+    holoCreate(1)
+    holoAlpha(1, 0)
+    holoParentAttachment(1, O, "anim_attachment_rh")
+#
+    holoPos(1, O:attachmentPos("anim_attachment_rh") + O:eye()*90)
+holoEntity(1):turretShoot(O:eye(),inf(),0.01,828,4,2)
+entity():setHalo(vec(random(255),random(255),random(255)))
+#Revolver:setHalo(vec(random(255),random(255),random(255)))
+}
+}
+}
+if(changed(owner():keyAttack2())){
+if(owner():weapon():type() == "weapon_357"){
+    
+Prop = propSpawn("models/props_c17/oildrum001_explosive.mdl",owner():aimPos(),0.01) 
+Prop:propBreak()
+timer("fucking wait :skull:",1500) 
+
+}
+}
+if(changed(owner():keyUse())){
+if(owner():weapon():type() == "weapon_357"){
+    
+Prop = propSpawn("models/props_phx/torpedo.mdl",owner():aimPos(),0.01) 
+Prop:propBreak()
+timer("bro wtf just wait",1500) 
+}
+}
+    
+interval(250)
+entity():setHalo(vec(random(255),random(255),random(255)))
+entity():setMaterial("models/weapons/v_crowbar/crowbar_cyl")
+entity():setColor(vec(random(255),random(255),random(255)))
+#requires antcore
