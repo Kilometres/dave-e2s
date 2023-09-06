@@ -1,17 +1,29 @@
-@name d4 n0cl1p
-@inputs 
-@outputs 
-@persist NoClip:number
-@trigger 
-runOnTick(1)
-runOnKeys(owner(),1)
+@name n0cl1p d4
+@persist O:entity NoClip
+#Required Cores: Dathuscore
 
-if(owner():keyPressed("E") & (keyClkPressed() == "E")){
-    NoClip = !NoClip  
-}
-if(NoClip == 1){
-    owner():applyPlayerForce(owner():vel()*-1+vec(0,0,gravity()*tickInterval()))
-    owner():teleport(owner():pos()+vec(owner():keyForward()-owner():keyBack(),owner():keyLeft()-owner():keyRight(),owner():keyJump()):rotate(owner():eyeAngles())*(40+40*owner():keySprint()-25*owner():keyDuck()))
+if (first()) {
+    O = owner()
+    NoClip = 0
 }
 
-#requires dathus core
+event tick() {
+    if (NoClip) {
+        O:applyPlayerForce(-O:vel() + vec(0, 0, gravity() * tickInterval()))
+    
+        local MoveVec = vec()
+        MoveVec += vec(O:keyForward() - O:keyBack(), 0, 0)
+        MoveVec += vec(0, O:keyLeft() - O:keyRight(), 0)
+        MoveVec += vec(0, 0, O:keyJump())
+            
+        local Speed = (40 + 40 * O:keySprint() - 25 * O:keyDuck())
+        
+        O:teleport(O:pos() + MoveVec:rotate(O:eyeAngles()) * Speed)
+    }
+}
+
+event keyPressed(Player:entity, Key:string, Down:number, KeyBind:string) {
+    if (Player == O & Key == "e" & Down) {
+        NoClip = !NoClip
+    }
+}
