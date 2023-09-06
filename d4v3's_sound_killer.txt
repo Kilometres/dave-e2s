@@ -1,14 +1,12 @@
-@name d4v3's sound killer
-@inputs 
-@outputs O:entity
+@name d4v3's Sound Killer
+@persist O:entity
 @model models/props_phx/misc/fender.mdl
-event tick() {
-O = owner()
-if (O:isAlive()){
-    
-    concmd("stopsound")
-}
-}
 
+event tick() {
+    O = owner()
+    if (O:isAlive()) {
+        concmd("stopsound")
+    }
+}
 
 #by d4v3.  :trollhd:
