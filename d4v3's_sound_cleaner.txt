@@ -1,7 +1,9 @@
-@name d4v3's sound cleaner
+@name d4v3's Sound Cleaner
 @model models/props_phx2/garbage_metalcan001a.mdl
+
 event chipUsed(O:entity){
-O = owner()
-if(changed(O:keyUse()) & owner():keyUse()){
-concmd("stopsound")}
+    O = owner()
+    if (changed(O:keyUse()) & owner():keyUse()) {
+        concmd("stopsound")
+    }
 }
