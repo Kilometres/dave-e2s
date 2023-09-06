@@ -1,15 +1,13 @@
-@name aimpos teleport d4
-@inputs 
-@outputs 
-@persist 
-@trigger 
-@strict
+@name AimPos Teleporter d4
+@persist O:entity
+#Required Cores: Dathuscore
+
+if (first()) {
+    O = owner()
+}
+
 event tick(){
-O=owner()
-#O:plyAlpha(255)
-#O:setHalo(vec(0,25,255))
-if(O:keyUse()){
-    O:teleport(O:aimPos())
+    if(O:keyUse()){
+        O:teleport(O:aimPos())
+    }
 }
-}
-#requires dathus core
