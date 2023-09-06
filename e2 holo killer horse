@@ -1,18 +1,16 @@
-@name killer horse (kills people with epilepsy)
-@persist PosE2:vector
+@name Killer Horse (kills people with epilepsy)
+@persist Pos:vector HoloEnt:entity
+#Required Cores: Entextracore
+#Notes: this got me banned on few servers xd
+
+if (first()) {
+    Pos = entity():pos()
+    HoloEnt = holoCreate(1, Pos, vec(20), entity():angles(), vec(), "models/props_c17/statue_horse.mdl")
+    holoMaterial(1, "models/debug/debugwhite")
+    holoParent(1, entity())
+}
 
 event tick(){
-
-    PosE2=entity():pos()
-    HoloHALO=holoCreate(1)
-    holoScale(1,vec(20))
-    holoPos(1, PosE2)
-    holoColor(1,vec(random(255),random(255),random(255)),255)
-    holoAlpha(1,255)
-    holoModel(1,"models/props_c17/statue_horse.mdl")
-    holoMaterial(1,"models/debug/debugwhite")
-    HoloHALO:setHalo(vec(random(255),random(255),random(255)))
+    HoloEnt:setColor(vec(random(255), random(255), random(255)), 255)
+    HoloEnt:setHalo(vec(random(255), random(255), random(255)))
 }
-#requires enextra core
-
-#note : this got me banned on few servers xd
