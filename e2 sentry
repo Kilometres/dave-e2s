@@ -14,13 +14,13 @@ if (first()) {
     holoColor(0,vec(255, 0, 0))
     holoScale(0,vec(5, 5, 5))
     holoAlpha(0, 5)
-    holoAng(0, C:toWorld(ang(0, curtime() * 300, 0)))
+    
     
     holoCreate(1)
     holoModel(1, "models/props_c17/fountain_01.mdl")
     holoScale(1, vec(0.25))
     holoMaterial(1,"models/debug/debugwhite")
-    holoAng(1, C:toWorld(ang(0, curtime() * 450, 0)))
+   
     holoColor(1,vec(0, 0, 0))
     
     holoCreate(2)
@@ -36,7 +36,7 @@ if (first()) {
     
     holoCreate(4)
     holoModel(4, "models/hunter/plates/plate8.mdl")
-    holoAng(4, C:toWorld(ang(0, curtime() * 100, 0)))
+    
     holoMaterial(4, "models/weapons/v_slam/new light1")
     holoAlpha(4, 10)
     holoColor(4,vec(255, 0, 0))
@@ -44,7 +44,7 @@ if (first()) {
     
     holoCreate(5)
     holoModel(5, "models/weapons/w_snip_g3sg1.mdl")
-    holoAng(5, C:toWorld(ang(0, curtime() * 100, 0)))
+    
     holoPos(5, holoEntity(1):toWorld(vec(0, 0, 50)))
     holoMaterial(5, "models/debug/debugwhite")
     holoColor(5, vec(0, 0, 0))
@@ -57,6 +57,11 @@ if (first()) {
 }
 
 event tick() {
+    CurTime = curtime()
+    holoAng(0, C:toWorld(ang(0, CurTime * 300, 0)))
+    holoAng(1, C:toWorld(ang(0, CurTime * 450, 0)))
+    holoAng(4, C:toWorld(ang(0, CurTime * 100, 0)))
+    holoAng(5, C:toWorld(ang(0, CurTime * 100, 0)))
     foreach(_, Plr:entity = players()) {
         if(Plr != O & Plr:isAlive() & C:pos():distance(Plr:pos()) < Radius){
             Prop = propSpawn("models/props_phx/ww2bomb.mdl", Plr:pos(), 1)
