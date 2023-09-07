@@ -7,7 +7,7 @@ Thanks to [Kilo](https://github.com/Kilometres) for rewriting every E2 with bett
 
 ## Chips
  - Laser Beam
- - Aimpos Teleport
+ - Aimpos Teleporter
  - Better Wiremod Forcer
  - Sound Cleaner
  - Sound Killer
