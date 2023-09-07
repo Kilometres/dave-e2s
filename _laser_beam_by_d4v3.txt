@@ -6,7 +6,7 @@
 if (first()) {
     O = owner()
     
-    entity():setHalo(( vec( 0,255,203) ))
+    entity():setHalo(vec(0, 255, 203))
     entity():setMaterial("models/wireframe.mdl")
     
     holoCreate(1)
