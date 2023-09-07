@@ -1,21 +1,22 @@
-@name  laser beam by d4v3
+@name  Laser Beam by d4v3
 @persist O:entity 
 @model models/weapons/w_smg_mac10.mdl
+#Required Cores: Antcore
+
 if (first()) {
-    event tick () {
     O = owner()
-
-
-if(changed(owner():keyUse()) & owner():keyUse()){
+    
+    entity():setHalo(( vec( 0,255,203) ))
+    entity():setMaterial("models/wireframe.mdl")
+    
     holoCreate(1)
     holoAlpha(1, 0)
     holoParentAttachment(1, O, "anim_attachment_rh")
-    holoPos(1, O:attachmentPos("anim_attachment_rh") + O:eye() *60)
-    holoEntity(1):turretShoot(O:eye(),5788458775362857234,0,1234,12358924357354354364334,1234)
+    holoPos(1, O:attachmentPos("anim_attachment_rh") + O:attachmentAng("anim_attachment_rh"):forward() * 15)
 }
-}
-}
-entity():setHalo(( vec( 0,255,203) ))
-entity():setMaterial("models/wireframe.mdl")
 
-#requires AntCore
+event keyPressed(Player:entity, Key:string, Down:number, KeyBind:string) {
+    if (Player == O & Key == "e" & Down) {
+        holoEntity(1):turretShoot(O:eye(), inf(), 0, 1234, inf(), 1234)
+    }
+}
