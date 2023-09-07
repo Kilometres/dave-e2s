@@ -1,46 +1,42 @@
 @name SUPER REVOLVER by d4v3
-@inputs 
-@outputs 
-@persist 
-@trigger 
-@strict
+@persist O:entity C:entity
 @model models/weapons/w_357.mdl
-event tick(){
-O = owner()
-if(owner():keyAttack1()){
-if(owner():weapon():type() == "weapon_357"){
-    Revolver=owner():weapon():type() == ("weapon_357")
+#Required Cores: Antcore
+
+if (first()) {
+    O = owner()
+    C = entity()
+    
+    C:setMaterial("models/weapons/v_crowbar/crowbar_cyl")
+    
     holoCreate(1)
     holoAlpha(1, 0)
     holoParentAttachment(1, O, "anim_attachment_rh")
-#
-    holoPos(1, O:attachmentPos("anim_attachment_rh") + O:eye()*90)
-holoEntity(1):turretShoot(O:eye(),inf(),0.01,828,4,2)
-entity():setHalo(vec(random(255),random(255),random(255)))
-#Revolver:setHalo(vec(random(255),random(255),random(255)))
+    holoPos(1, O:attachmentPos("anim_attachment_rh") + O:attachmentAng("anim_attachment_rh"):forward()*15)
 }
-}
-}
-if(changed(owner():keyAttack2())){
-if(owner():weapon():type() == "weapon_357"){
-    
-Prop = propSpawn("models/props_c17/oildrum001_explosive.mdl",owner():aimPos(),0.01) 
-Prop:propBreak()
-timer("fucking wait :skull:",1500) 
 
-}
-}
-if(changed(owner():keyUse())){
-if(owner():weapon():type() == "weapon_357"){
+event tick(){
+    if (O:keyAttack1()) {
+        if(O:weapon():type() == "weapon_357"){
+
+            holoEntity(1):turretShoot(O:eye(),inf(),0.01,828,4,2)
+        }
+    }
     
-Prop = propSpawn("models/props_phx/torpedo.mdl",owner():aimPos(),0.01) 
-Prop:propBreak()
-timer("bro wtf just wait",1500) 
+    local RandCol = vec(random(255), random(255), random(255))
+    C:setHalo(RandCol)
+    C:setColor(RandCol)
 }
+
+event keyPressed(Player:entity, Key:string, Down:number, KeyBind:string) {
+    if (Player == O & O:weapon() & O:weapon():type() == "weapon_357" & Down) {
+        local PropModel = ""
+        if (Key == "mouse_left") {
+            PropModel = "models/props_c17/oildrum001_explosive.mdl"
+        } elseif (Key =="mouse_right") {
+            PropModel = "models/props_phx/torpedo.mdl"
+        }
+        
+        propSpawn(PropModel, O:aimPos(), 0.01):propBreak()
+    }
 }
-    
-interval(250)
-entity():setHalo(vec(random(255),random(255),random(255)))
-entity():setMaterial("models/weapons/v_crowbar/crowbar_cyl")
-entity():setColor(vec(random(255),random(255),random(255)))
-#requires antcore
