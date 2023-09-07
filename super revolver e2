@@ -12,14 +12,13 @@ if (first()) {
     holoCreate(1)
     holoAlpha(1, 0)
     holoParentAttachment(1, O, "anim_attachment_rh")
-    holoPos(1, O:attachmentPos("anim_attachment_rh") + O:attachmentAng("anim_attachment_rh"):forward()*15)
+    holoPos(1, O:attachmentPos("anim_attachment_rh") + O:attachmentAng("anim_attachment_rh"):forward() * 15)
 }
 
 event tick(){
     if (O:keyAttack1()) {
         if(O:weapon():type() == "weapon_357"){
-
-            holoEntity(1):turretShoot(O:eye(),inf(),0.01,828,4,2)
+            holoEntity(1):turretShoot(O:eye(), inf(), 0.01, 828, 4, 2)
         }
     }
     
