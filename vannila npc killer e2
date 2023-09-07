@@ -1,12 +1,9 @@
-@name npc killer d4 (vannila doenst require any core)
-@inputs 
-@outputs 
-@persist 
-@trigger 
-@strict
-interval(1500)
+@name Vanilla NPC Killer d4
+
 findByClass("npc_*")
 foreach(_,NPC:entity = findToArray()){
-Prop = propSpawn("models/props_phx/ww2bomb.mdl",NPC:pos(),1)
-Prop:propBreak()
+    local Prop = propSpawn("models/props_phx/ww2bomb.mdl", NPC:pos(), 1)
+    Prop:propBreak()
 }
+
+interval(1500)
