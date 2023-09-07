@@ -3,7 +3,7 @@ An accumulation of my various Garry's Mod E2s.
 
 
 
-Thanks to [Kilo](https://github.com/Kilometres) for rewriting every E2 with better formatting, bug fixes and general optimisation.
+Thanks to [Kilo](https://github.com/Kilometres) for rewriting every E2 with [better formatting, bug fixes and heavy optimisation](Kilo's%20Improvements.md).
 
 ## Chips
  - Laser Beam
