@@ -8,5 +8,3 @@ event tick() {
         concmd("stopsound")
     }
 }
-
-#by d4v3.  :trollhd:
