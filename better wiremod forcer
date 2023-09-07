@@ -1,7 +1,5 @@
-@name Forcer Constants d4
-@outputs Force OffsetForce Velocity Length
-Force=inf()
-OffsetForce=inf()
-Velocity=inf()
-Length=inf()
+@name Inf Constant d4
+@outputs Inf
+
+Inf=inf()
 
