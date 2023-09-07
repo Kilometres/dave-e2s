@@ -10,11 +10,21 @@ Although seemingly the least significant out of all these changes, good code rea
 
 ## Optimisation
 ### Optimisations
-
+Although most optimisations are specific to each E2, these are some common mistakes/inefficiencies I noticed:
+- ❗ Defining the variable `O:entity` as `owner()` then not using it.
+- ❗ Using `event tick() {}`, `runOnTick(1)` and `interval` all in the same E2.
+- ❗ Using `findByClass("player")` and `findToArray()` to get an array of all players, rather than using `players()`.
+- ❗ Properties that could be set once in `if (first()) {}`, where being set every single tick.
+- ⚠️ Using `event tick() {}` and `changed(O:keyPressed(""))` for keybinds, rather than `event KeyPressed(e, s, n, s)`.
+- ⚠️ Starting timers that don't do anything.
+- ⚠️ Not using `elseif` in mutually exclusive conditions.
+- ⚠️ Not using [local variables](https://github.com/wiremod/wire/wiki/Expression-2-Syntax#locality)
 ### Speed
-It is important to note that the average OPS (Operations Per Second) only highlights optimisations made in code running on every tick not in `if (first()) {}`. The `Efficiency` metric measures the OPS of the rewrite as a percentage of the original. i.e. A chip with 50% efficiency is where, the rewrite runs with 50% of the OPS of the original. The lower the `Efficiency` metric of a chip, the more optimised the rewrite is.
+- It is important to note that the average OPS (Operations Per Second) only highlights optimisations made in code running on every tick not in `if (first()) {}`.
+- The `Efficiency` metric measures the OPS of the rewrite as a percentage of the original. i.e. A chip with 50% efficiency is where, the rewrite runs with 50% of the OPS of the original. The lower the `Efficiency` metric of a chip, the more optimised the rewrite is.
+- The `Idle` state describes when the E2 has no input and is not completing its main function, the `Active` state describes when the E2 has input or is completing its main function.
 
-| Expression2 Name  | Active/Idle | d4v3 Original | Kilo Rewrite | Efficiency |
+| Expression2 Name  | State | d4v3 Original | Kilo Rewrite | Efficiency |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | Laser Beam  | Idle  | 34ops | 0ops | 0% |
 | Laser Beam  | Active  | 72ops | 15ops | 20.8% |
@@ -25,6 +35,15 @@ It is important to note that the average OPS (Operations Per Second) only highli
 | Noclip Fly | Idle | 82ops | 8ops | 9.7% |
 | Noclip Fly | Active | 450ops | 350ops | 77.8% |
 | Sentry | Idle | 2500ops | 483ops | 19.3% |
-
+| Sentry | Active | 2801ops | 713ops | 25.5% |
+| Vanilla NPC Killer | Active | 1043ops | 56ops | 5.3% |
+Average Efficiency:
+- Idle: 16.3%
+- Active: 44.3%
+- Total: 29%
 
 ### Bug Fixes & Improvements
+- Noclip Fly
+  - Completely Broken: `keyPressed(s)` had a parameter of `"E"`, key codes are lowercase e.g. `"e"`
+- Super Revolver
+  - The keybind only worked if the key was held down for between `250ms` and `500ms`
